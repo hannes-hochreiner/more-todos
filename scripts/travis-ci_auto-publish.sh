@@ -1,9 +1,9 @@
 #!/bin/bash
-echo -e "repo: $TRAVIS_REPO_SLUG\n"
-echo -e "branch: $TRAVIS_BRANCH\n"
-echo -e "tag: $TRAVIS_TAG\n"
+echo -e "repo: $TRAVIS_REPO_SLUG"
+echo -e "branch: $TRAVIS_BRANCH"
+echo -e "tag: $TRAVIS_TAG"
 
-if [ "$TRAVIS_REPO_SLUG" == "hannes-hochreiner/more-todos" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ -v "$TRAVIS_TAG" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "hannes-hochreiner/more-todos" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "$TRAVIS_TAG" ]; then
   echo -e "Publishing...\n"
 
   cp -r . $HOME/export
