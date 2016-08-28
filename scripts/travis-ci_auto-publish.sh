@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ "$TRAVIS_REPO_SLUG" == "hannes-hochreiner/more-todos" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_TAG" ]; then
+if [ "$TRAVIS_REPO_SLUG" == "hannes-hochreiner/more-todos" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_BRANCH" == "master" ] && [ -v "$TRAVIS_TAG" ]; then
   echo -e "Publishing...\n"
 
   cp -r . $HOME/export
