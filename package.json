@@ -1,0 +1,20 @@
+{
+  "name": "more-todos",
+  "version": "1.0.0",
+  "description": "Just another todo app.",
+  "main": "bld/index.js",
+  "scripts": {
+    "test": "echo \"no tests specified\" && exit 0",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hannes-hochreiner/more-todos.git"
+  },
+  "author": "Hannes Hochreiner <hannes@hochreiner.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hannes-hochreiner/more-todos/issues"
+  },
+  "homepage": "https://github.com/hannes-hochreiner/more-todos#readme"
+}
