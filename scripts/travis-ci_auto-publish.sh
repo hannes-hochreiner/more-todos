@@ -15,9 +15,8 @@ if [ "$TRAVIS_REPO_SLUG" == "hannes-hochreiner/more-todos" ] && [ "$TRAVIS_PULL_
   cd gh-pages
   git rm -rf .
   cp -rf $HOME/export/bld .
-
   git add -f .
   git commit -m "Lastest version on successful travis build $TRAVIS_BUILD_NUMBER auto-pushed to gh-pages"
   git push -fq origin gh-pages > /dev/null
-  echo -e "Published to gh-pages.\n"
+  echo -e "Published to gh-pages." 2>&1
 fi

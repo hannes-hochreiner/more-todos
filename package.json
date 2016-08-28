@@ -4,8 +4,8 @@
   "description": "Just another todo app.",
   "main": "bld/index.js",
   "scripts": {
-    "test": "echo \"no tests specified\" && exit 0",
-    "build": ""
+    "test": "npm run build && echo \"no tests specified\" && exit 0",
+    "build": "scripts/build.sh"
   },
   "repository": {
     "type": "git",

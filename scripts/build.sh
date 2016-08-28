@@ -1,5 +1,5 @@
 if [ -d "bld" ]; then
-  rmdir bld
+  rm -r bld
 fi
 
 mkdir bld
