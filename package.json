@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/hannes-hochreiner/more-todos/issues"
   },
-  "homepage": "https://github.com/hannes-hochreiner/more-todos#readme"
+  "homepage": "https://github.com/hannes-hochreiner/more-todos#readme",
+  "devDependencies": {
+    "babel-core": "^6.14.0",
+    "babel-preset-es2015-riot": "^1.1.0",
+    "riot": "^2.6.1"
+  }
 }
