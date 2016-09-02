@@ -5,7 +5,8 @@
   "main": "bld/index.js",
   "scripts": {
     "test": "npm run build && echo \"no tests specified\" && exit 0",
-    "build": "scripts/build.sh"
+    "build": "scripts/build.sh",
+    "artwork": "scripts/artwork.sh"
   },
   "repository": {
     "type": "git",
