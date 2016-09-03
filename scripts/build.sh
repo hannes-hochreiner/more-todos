@@ -11,4 +11,6 @@ cp src/manifest.json bld
 cp src/icon-2x.png bld
 cp src/icon-3x.png bld
 cp src/icon-4x.png bld
+cp external/material.min.css bld
+cp external/material.min.js bld
 cp node_modules/riot/riot.min.js bld
