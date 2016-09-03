@@ -5,18 +5,9 @@
       <label class="mdl-textfield__label" for="newTodoText">new todo...</label>
     </div>
   </form>
-  <ul class="demo-list-control mdl-list">
-    <li each={todo in todos} class="mdl-list__item">
-      <span class="mdl-list__item-primary-content">
-        <mr-todo todo={todo}></mr-todo>
-      </span>
-      <span class="mdl-list__item-secondary-action">
-        <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="list-checkbox-{todo._id}">
-          <input type="checkbox" id="list-checkbox-{todo._id}" class="mdl-checkbox__input" />
-        </label>
-      </span>
-    </li>
-  </ul>
+  <div class="mdl-list">
+    <mr-todo each={todo in todos} todo={todo}></mr-todo>
+  </div>
   <script>
     this.todos = [];
 
