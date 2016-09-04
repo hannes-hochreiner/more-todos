@@ -4,20 +4,20 @@ self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(currentCache).then(function(cache) {
       return cache.addAll([
-        "icon-2x.png",
-        "icon-3x.png",
-        "icon-4x.png",
-        "/",
-        "/index.html",
-        "/manifest.json",
-        "/material.min.css",
-        "/material.min.js",
-        "/pouchdb.min.js",
-        "/pubsub.js",
-        "/repositoryPouchdb.js",
-        "/riot.min.js",
-        "/todo.js",
-        "/todolist.js"
+        "/more-todos/icon-2x.png",
+        "/more-todos/icon-3x.png",
+        "/more-todos/icon-4x.png",
+        "/more-todos/",
+        "/more-todos/index.html",
+        "/more-todos/manifest.json",
+        "/more-todos/material.min.css",
+        "/more-todos/material.min.js",
+        "/more-todos/pouchdb.min.js",
+        "/more-todos/pubsub.js",
+        "/more-todos/repositoryPouchdb.js",
+        "/more-todos/riot.min.js",
+        "/more-todos/todo.js",
+        "/more-todos/todolist.js"
       ]);
     })
   );
