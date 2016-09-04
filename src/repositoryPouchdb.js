@@ -2,30 +2,25 @@ class RepositoryPouchdb {
   constructor(pouchdb, pubsub) {
     this.pouchdb = pouchdb;
     this.pubsub = pubsub;
-    this.todos = [
-      { _id: 1, text: "text1", completed: false },
-      { _id: 2, text: "text2", completed: false },
-      { _id: 3, text: "text3", completed: true }
-    ];
   }
 
   getAllTodos() {
-    return new Promise((resolve, reject) => {
-      resolve(this.todos);
-    });
+    return this.pouchdb.allDocs({include_docs: true});
   }
 
   createTodo(todo) {
-    todo._id = this.todos.length;
-
-    this.todos.push(todo);
-    this.pubsub.publish("todo.created", todo._id);
+    this.pouchdb.post(todo).then((resp) => {
+      this.pubsub.publish("todo.created", resp.id);
+    }).catch((err) => {
+      this.pubsub.publish("error.repositoryPouchdb.createTodo", err);
+    });
   }
 
   deleteTodo(todo) {
-    this.todos = this.todos.filter((elem) => {
-      return elem._id !== todo._id;
+    this.pouchdb.remove(todo).then((resp) => {
+      this.pubsub.publish("todo.deleted", resp.id);
+    }).catch((err) => {
+      this.pubsub.publish("error.repositoryPouchdb.deleteTodo", err);
     });
-    this.pubsub.publish("todo.deleted", todo._id);
   }
 }

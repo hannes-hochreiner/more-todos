@@ -15,13 +15,14 @@
   <body>
     <h3>more todos</h3>
     <mr-todolist></mr-todolist>
+    <script src="pouchdb.min.js"></script>
     <script src="pubsub.js"></script>
     <script src="repositoryPouchdb.js"></script>
     <script src="riot.min.js"></script>
     <script src="todolist.js"></script>
     <script src="todo.js"></script>
     <script>
-      var repo = new RepositoryPouchdb({}, PubSub);
+      var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
 
       PubSub.subscribe("todo", function(msg, data) {
         console.log(msg + ": " + data);
