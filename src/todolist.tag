@@ -9,14 +9,30 @@
     <mr-todo each={todo in todos} todo={todo}></mr-todo>
   </div>
   <script>
+    this.repo = opts.repository;
+    this.pubsub = opts.pubsub;
     this.todos = [];
 
     this.createNewTodo = function() {
-      this.todos.push({
-        "_id": this.todos.length,
+      this.repo.createTodo({
         "text": this.newTodoText.value
       });
       this.newTodoText.value = null;
     }
+
+    this.updateTodoList = function() {
+      this.todos.splice(0, this.todos.length);
+      repo.getAllTodos().then((res) => {
+        res.forEach((elem) => {
+          this.todos.push(elem);
+        });
+
+        this.update();
+      })
+    }
+
+    this.pubsub.subscribe("todo.created", this.updateTodoList.bind(this));
+    this.pubsub.subscribe("todo.deleted", this.updateTodoList.bind(this));
+    this.updateTodoList();
   </script>
 </mr-todolist>

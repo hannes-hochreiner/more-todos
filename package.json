@@ -19,8 +19,11 @@
   },
   "homepage": "https://github.com/hannes-hochreiner/more-todos#readme",
   "devDependencies": {
+    "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-preset-es2015-riot": "^1.1.0",
+    "pouchdb": "^5.4.5",
+    "pubsub-js": "^1.5.3",
     "riot": "^2.6.1"
   }
 }
