@@ -8,29 +8,30 @@ var RepositoryPouchdb = function () {
 
     this.pouchdb = pouchdb;
     this.pubsub = pubsub;
-    this.todos = [{ _id: 1, text: "text1", completed: false }, { _id: 2, text: "text2", completed: false }, { _id: 3, text: "text3", completed: true }];
   }
 
   RepositoryPouchdb.prototype.getAllTodos = function getAllTodos() {
-    var _this = this;
-
-    return new Promise(function (resolve, reject) {
-      resolve(_this.todos);
-    });
+    return this.pouchdb.allDocs({ include_docs: true });
   };
 
   RepositoryPouchdb.prototype.createTodo = function createTodo(todo) {
-    todo._id = this.todos.length;
+    var _this = this;
 
-    this.todos.push(todo);
-    this.pubsub.publish("todo.created", todo._id);
+    this.pouchdb.post(todo).then(function (resp) {
+      _this.pubsub.publish("todo.created", resp.id);
+    }).catch(function (err) {
+      _this.pubsub.publish("error.repositoryPouchdb.createTodo", err);
+    });
   };
 
   RepositoryPouchdb.prototype.deleteTodo = function deleteTodo(todo) {
-    this.todos = this.todos.filter(function (elem) {
-      return elem._id !== todo._id;
+    var _this2 = this;
+
+    this.pouchdb.remove(todo).then(function (resp) {
+      _this2.pubsub.publish("todo.deleted", resp.id);
+    }).catch(function (err) {
+      _this2.pubsub.publish("error.repositoryPouchdb.deleteTodo", err);
     });
-    this.pubsub.publish("todo.deleted", todo._id);
   };
 
   return RepositoryPouchdb;
