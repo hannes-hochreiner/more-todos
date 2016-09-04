@@ -11,7 +11,11 @@ var RepositoryPouchdb = function () {
   }
 
   RepositoryPouchdb.prototype.getAllTodos = function getAllTodos() {
-    return this.pouchdb.allDocs({ include_docs: true });
+    return this.pouchdb.allDocs({ include_docs: true }).then(function (res) {
+      return res.rows.map(function (row) {
+        return row.doc;
+      });
+    });
   };
 
   RepositoryPouchdb.prototype.createTodo = function createTodo(todo) {
