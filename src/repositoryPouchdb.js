@@ -5,7 +5,11 @@ class RepositoryPouchdb {
   }
 
   getAllTodos() {
-    return this.pouchdb.allDocs({include_docs: true});
+    return this.pouchdb.allDocs({include_docs: true}).then((res) => {
+      return res.rows.map((row) => {
+        return row.doc;
+      });
+    });
   }
 
   createTodo(todo) {
