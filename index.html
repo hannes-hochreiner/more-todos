@@ -13,8 +13,41 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <h3>more todos</h3>
-    <mr-todolist></mr-todolist>
+    <div class="demo-layout-waterfall mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--waterfall">
+        <!-- Top row, always visible -->
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">more todos</span>
+        </div>
+        <!-- Bottom row, not visible on scroll -->
+        <div class="mdl-layout__header-row">
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="#">all</a>
+            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+          </nav>
+        </div>
+      </header>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Help</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">about</a>
+          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+        <div class="page-content">
+          <mr-todolist></mr-todolist>
+        </div>
+      </main>
+    </div>
+
     <script src="pouchdb.min.js"></script>
     <script src="pubsub.js"></script>
     <script src="repositoryPouchdb.js"></script>
