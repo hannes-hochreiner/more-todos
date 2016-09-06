@@ -17,4 +17,5 @@ cp external/material.min.js bld
 cp node_modules/riot/riot.min.js bld
 cp node_modules/pouchdb/dist/pouchdb.min.js bld
 cp node_modules/pubsub-js/src/pubsub.js bld
-cp src/serviceWorker.js bld
+echo // `date` > bld/serviceWorker.js
+cat src/serviceWorker.js >> bld/serviceWorker.js
