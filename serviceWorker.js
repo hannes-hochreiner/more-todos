@@ -1,4 +1,4 @@
-// Tue Sep 6 06:33:00 UTC 2016
+// Wed Sep 7 05:21:41 UTC 2016
 var currentCache = "more-todos-v1.1";
 
 self.addEventListener('install', function(e) {
