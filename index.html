@@ -13,51 +13,23 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout">
-      <header class="mdl-layout__header mdl-layout__header--scroll">
-        <!-- Top row, always visible -->
-        <div class="mdl-layout__header-row">
-          <!-- Title -->
-          <span class="mdl-layout-title">more todos</span>
-          <div class="mdl-layout-spacer"></div>
-          <!-- Navigation -->
-          <nav class="mdl-navigation">
-            <a class="mdl-navigation__link" href="#">all</a>
-            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-            <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-          </nav>
-        </div>
-      </header>
-      <div class="mdl-layout__drawer">
-        <span class="mdl-layout-title">Help</span>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="">about</a>
-          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-          <!-- <a class="mdl-navigation__link" href="">Link</a> -->
-        </nav>
-      </div>
-      <main class="mdl-layout__content">
-        <div class="page-content">
-          <mr-todolist></mr-todolist>
-        </div>
-      </main>
-    </div>
-
+    <div id="content"></div>
     <script src="pouchdb.min.js"></script>
     <script src="pubsub.js"></script>
     <script src="repositoryPouchdb.js"></script>
     <script src="riot.min.js"></script>
     <script src="todolist.js"></script>
     <script src="todo.js"></script>
+    <script src="page-main.js"></script>
+    <script src="page-about.js"></script>
     <script>
       if("serviceWorker" in navigator) {
-        navigator.serviceWorker
-           .register("/more-todos/serviceWorker.js")
-           .then(function() {
-             console.log("Service Worker Registered");
-           });
+        navigator.serviceWorker.register("/more-todos/serviceWorker.js").then(function() {
+          console.log("Service worker registered");
+        }).catch(function(e) {
+          console.log("Service worker failed to register");
+          console.log(e);
+        });
       }
 
       var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
@@ -66,7 +38,23 @@
         console.log(msg + ": " + data);
       });
 
-      riot.mount('*', { repository: repo, pubsub: PubSub })
+      var currentPage = null;
+
+      function goTo(path) {
+        if (currentPage) {
+          currentPage.unmount(true);
+        }
+
+        if (path === "about" ) {
+          currentPage = riot.mount('div#content', 'mr-page-about')[0];
+        } else {
+          currentPage = riot.mount('div#content', 'mr-page-main', { repository: repo, pubsub: PubSub })[0];
+          console.log(currentPage);
+        }
+      }
+
+      riot.route(goTo);
+      riot.route.start(true);
     </script>
   </body>
 </html>

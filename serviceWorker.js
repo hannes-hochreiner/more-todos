@@ -1,4 +1,4 @@
-// Wed Sep 7 05:21:41 UTC 2016
+// Thu Sep 8 06:16:49 UTC 2016
 var currentCache = "more-todos-v1.1";
 
 self.addEventListener('install', function(e) {
@@ -13,6 +13,8 @@ self.addEventListener('install', function(e) {
         "/more-todos/manifest.json",
         "/more-todos/material.min.css",
         "/more-todos/material.min.js",
+        "/more-todos/page-about.js",
+        "/more-todos/page-main.js",
         "/more-todos/pouchdb.min.js",
         "/more-todos/pubsub.js",
         "/more-todos/repositoryPouchdb.js",
