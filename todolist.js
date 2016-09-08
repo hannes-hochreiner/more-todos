@@ -29,4 +29,16 @@ this.updateTodoList = function () {
 this.pubsub.subscribe("todo.created", this.updateTodoList.bind(this));
 this.pubsub.subscribe("todo.deleted", this.updateTodoList.bind(this));
 this.updateTodoList();
+
+this.on("updated", function () {
+  this.upgradeRecursively(this.root);
+});
+
+this.upgradeRecursively = function (elem) {
+  componentHandler.upgradeElement(elem);
+
+  for (var childCntr = 0; childCntr < elem.children.length; childCntr++) {
+    this.upgradeRecursively(elem.children[childCntr]);
+  }
+};
 });
