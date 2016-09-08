@@ -12,6 +12,8 @@ self.addEventListener('install', function(e) {
         "/more-todos/manifest.json",
         "/more-todos/material.min.css",
         "/more-todos/material.min.js",
+        "/more-todos/page-about.js",
+        "/more-todos/page-main.js",
         "/more-todos/pouchdb.min.js",
         "/more-todos/pubsub.js",
         "/more-todos/repositoryPouchdb.js",

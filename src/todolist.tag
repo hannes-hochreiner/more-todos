@@ -9,6 +9,7 @@
     <mr-todo each={todo in todos} todo={todo}></mr-todo>
   </div>
   <script>
+    console.log(opts);
     this.repo = opts.repository;
     this.pubsub = opts.pubsub;
     this.todos = [];

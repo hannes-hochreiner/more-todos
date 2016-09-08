@@ -6,6 +6,8 @@ mkdir bld
 
 riot --type babel src/todolist.tag bld/todolist.js
 riot --type babel src/todo.tag bld/todo.js
+riot --type babel src/page-about.tag bld/page-about.js
+riot --type babel src/page-main.tag bld/page-main.js
 babel src/repositoryPouchdb.js --out-file bld/repositoryPouchdb.js
 cp src/index.html bld
 cp src/manifest.json bld
