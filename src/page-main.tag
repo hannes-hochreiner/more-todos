@@ -1,12 +1,17 @@
 <mr-page-main>
-  <div class="mdl-layout mdl-js-layout">
-    <header class="mdl-layout__header mdl-layout__header--scroll">
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
       <div class="mdl-layout__header-row">
-        <span class="mdl-layout-title">more todos</span>
+        <!-- Title -->
+        <span class="mdl-layout-title">Title</span>
+        <!-- Add spacer, to align navigation to the right -->
         <div class="mdl-layout-spacer"></div>
-        <nav class="mdl-navigation">
-          <a class="mdl-navigation__link" href="#">all</a>
-        </nav>
+        <button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+          <i class="material-icons">more_vert</i>
+        </button>
+        <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+          <li class="mdl-menu__item">delete completed</li>
+        </ul>
       </div>
     </header>
     <div class="mdl-layout__drawer">

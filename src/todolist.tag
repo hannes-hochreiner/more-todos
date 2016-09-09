@@ -1,8 +1,8 @@
 <mr-todolist>
   <form onsubmit={createNewTodo}>
-    <div class="mdl-textfield mdl-js-textfield">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
       <input class="mdl-textfield__input" type="text" id="newTodoText">
-      <label class="mdl-textfield__label" for="newTodoText">new todo...</label>
+      <label class="mdl-textfield__label" for="newTodoText">I should...</label>
     </div>
   </form>
   <div class="mdl-list">
