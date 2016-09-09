@@ -19,5 +19,5 @@ cp external/material.min.js bld
 cp node_modules/riot/riot.min.js bld
 cp node_modules/pouchdb/dist/pouchdb.min.js bld
 cp node_modules/pubsub-js/src/pubsub.js bld
-echo // `date` > bld/serviceWorker.js
+echo var currentCache = \"more-todos-`date --iso-8601=seconds`\"\; > bld/serviceWorker.js
 cat src/serviceWorker.js >> bld/serviceWorker.js

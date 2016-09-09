@@ -1,5 +1,3 @@
-var currentCache = "more-todos-v1.1";
-
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(currentCache).then(function(cache) {
