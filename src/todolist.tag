@@ -16,7 +16,8 @@
 
     this.createNewTodo = function() {
       this.repo.createTodo({
-        "text": this.newTodoText.value
+        "text": this.newTodoText.value,
+        "completed": false
       });
       this.newTodoText.value = null;
     }
@@ -34,6 +35,7 @@
 
     this.pubsub.subscribe("todo.created", this.updateTodoList.bind(this));
     this.pubsub.subscribe("todo.deleted", this.updateTodoList.bind(this));
+    this.pubsub.subscribe("todo.updated", this.updateTodoList.bind(this));
     this.updateTodoList();
 
     this.on("updated", function() {

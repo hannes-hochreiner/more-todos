@@ -4,7 +4,7 @@
   </span>
   <span class="mdl-list__item-secondary-action">
     <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
-      <input type="checkbox" class="mdl-checkbox__input" onchange="{deleteTodo}"></input>
+      <input type="checkbox" class="mdl-checkbox__input" checked="{todo.completed}" onchange="{updateTodo}"></input>
     </label>
   </span>
   <script>
@@ -23,8 +23,8 @@
       }
     };
 
-    this.deleteTodo = function() {
-      this.repo.deleteTodo(this.todo);
+    this.updateTodo = function() {
+      this.repo.updateTodo(this.todo);
     };
   </script>
 </mr-todo>

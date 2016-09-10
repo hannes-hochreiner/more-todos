@@ -10,7 +10,7 @@
           <i class="material-icons">more_vert</i>
         </button>
         <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
-          <li class="mdl-menu__item">delete completed</li>
+          <li class="mdl-menu__item" onclick="{deleteCompleted}">delete completed</li>
         </ul>
       </div>
     </header>
@@ -40,6 +40,18 @@
       for (let childCntr = 0; childCntr < elem.children.length; childCntr++) {
         this.upgradeRecursively(elem.children[childCntr]);
       }
+    };
+
+    this.deleteCompleted = function() {
+      this.repo.getAllTodos().then(function(res) {
+        res.filter(function(elem) {
+          return elem.completed;
+        }).forEach(function(elem) {
+          this.repo.deleteTodo(elem);
+        });
+      }).catch(function(err) {
+        this.pubsub.publish("error.page-main.deleteCompleted", err);
+      });
     };
   </script>
 </mr-page-main>

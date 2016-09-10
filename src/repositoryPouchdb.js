@@ -27,4 +27,12 @@ class RepositoryPouchdb {
       this.pubsub.publish("error.repositoryPouchdb.deleteTodo", err);
     });
   }
+
+  updateTodo(todo) {
+    this.pouchdb.put(todo).then((resp) => {
+      this.pubsub.publish("todo.updated", resp.id);
+    }).catch((err) => {
+      this.pubsub.publish("error.repositoryPouchdb.updateTodo", err);
+    });
+  }
 }
