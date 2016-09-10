@@ -6,4 +6,4 @@ Short description of the main processes.
 
 The user creates a new todo item.
 
-![diagram](https://raw.githubusercontent.com/hannes-hochreiner/more-todos/master/doc/add_todo.svg)
+![diagram](add_todo.png)
