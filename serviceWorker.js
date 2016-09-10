@@ -1,4 +1,4 @@
-var currentCache = "more-todos-2016-09-10T11:23:26+0000";
+var currentCache = "more-todos-2016-09-10T11:42:00+0000";
 self.addEventListener('install', function(e) {
   e.waitUntil(
     caches.open(currentCache).then(function(cache) {

@@ -17,9 +17,7 @@ this.upgradeRecursively = function (elem) {
 };
 
 this.toggleTodo = function (e) {
-  console.log(e);
-  this.todo.completed = !this.todo.completed;
-  console.log(this.todo);
+  this.todo.completed = e.target.checked;
   this.repo.updateTodo(this.todo);
 };
 });
