@@ -1,4 +1,4 @@
-riot.tag2('mr-todo', '<span class="mdl-list__item-primary-content"> {todo.text} </span> <span class="mdl-list__item-secondary-action"> <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"> <input type="checkbox" class="mdl-checkbox__input" onchange="{deleteTodo}"></input> </label> </span>', '', 'class="mdl-list__item"', function(opts) {
+riot.tag2('mr-todo', '<span class="mdl-list__item-primary-content"> {todo.text} </span> <span class="mdl-list__item-secondary-action"> <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect"> <input type="checkbox" class="mdl-checkbox__input" __checked="{todo.completed}" onchange="{updateTodo}"></input> </label> </span>', '', 'class="mdl-list__item"', function(opts) {
 "use strict";
 
 this.todo = opts.todo;
@@ -16,7 +16,7 @@ this.upgradeRecursively = function (elem) {
   }
 };
 
-this.deleteTodo = function () {
-  this.repo.deleteTodo(this.todo);
+this.updateTodo = function () {
+  this.repo.updateTodo(this.todo);
 };
 });

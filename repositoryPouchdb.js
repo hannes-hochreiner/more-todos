@@ -38,5 +38,15 @@ var RepositoryPouchdb = function () {
     });
   };
 
+  RepositoryPouchdb.prototype.updateTodo = function updateTodo(todo) {
+    var _this3 = this;
+
+    this.pouchdb.put(todo).then(function (resp) {
+      _this3.pubsub.publish("todo.updated", resp.id);
+    }).catch(function (err) {
+      _this3.pubsub.publish("error.repositoryPouchdb.updateTodo", err);
+    });
+  };
+
   return RepositoryPouchdb;
 }();
