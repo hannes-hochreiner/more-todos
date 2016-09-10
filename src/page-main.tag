@@ -27,30 +27,32 @@
     </main>
   </div>
   <script>
-    this.repo = opts.repository;
-    this.pubsub = opts.pubsub;
+    var that = this;
 
-    this.on("updated", function() {
-      this.upgradeRecursively(this.root);
+    that.repo = opts.repository;
+    that.pubsub = opts.pubsub;
+
+    that.on("updated", function() {
+      that.upgradeRecursively(that.root);
     });
 
-    this.upgradeRecursively = function(elem) {
+    that.upgradeRecursively = function(elem) {
       componentHandler.upgradeElement(elem);
 
       for (let childCntr = 0; childCntr < elem.children.length; childCntr++) {
-        this.upgradeRecursively(elem.children[childCntr]);
+        that.upgradeRecursively(elem.children[childCntr]);
       }
     };
 
-    this.deleteCompleted = function() {
-      this.repo.getAllTodos().then(function(res) {
+    that.deleteCompleted = function() {
+      that.repo.getAllTodos().then(function(res) {
         res.filter(function(elem) {
           return elem.completed;
         }).forEach(function(elem) {
-          this.repo.deleteTodo(elem);
+          that.repo.deleteTodo(elem);
         });
       }).catch(function(err) {
-        this.pubsub.publish("error.page-main.deleteCompleted", err);
+        that.pubsub.publish("error.page-main.deleteCompleted", err);
       });
     };
   </script>
