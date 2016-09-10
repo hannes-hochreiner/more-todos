@@ -1,4 +1,4 @@
-class RepositoryPouchdb {
+export class RepositoryPouchdb {
   constructor(pouchdb, pubsub) {
     this.pouchdb = pouchdb;
     this.pubsub = pubsub;
@@ -13,7 +13,7 @@ class RepositoryPouchdb {
   }
 
   createTodo(todo) {
-    this.pouchdb.post(todo).then((resp) => {
+    return this.pouchdb.post(todo).then((resp) => {
       this.pubsub.publish("todo.created", resp.id);
     }).catch((err) => {
       this.pubsub.publish("error.repositoryPouchdb.createTodo", err);
@@ -21,7 +21,7 @@ class RepositoryPouchdb {
   }
 
   deleteTodo(todo) {
-    this.pouchdb.remove(todo).then((resp) => {
+    return this.pouchdb.remove(todo).then((resp) => {
       this.pubsub.publish("todo.deleted", resp.id);
     }).catch((err) => {
       this.pubsub.publish("error.repositoryPouchdb.deleteTodo", err);
@@ -29,7 +29,7 @@ class RepositoryPouchdb {
   }
 
   updateTodo(todo) {
-    this.pouchdb.put(todo).then((resp) => {
+    return this.pouchdb.put(todo).then((resp) => {
       this.pubsub.publish("todo.updated", resp.id);
     }).catch((err) => {
       this.pubsub.publish("error.repositoryPouchdb.updateTodo", err);

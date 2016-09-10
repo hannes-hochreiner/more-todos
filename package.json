@@ -4,7 +4,7 @@
   "description": "Just another todo app.",
   "main": "bld/index.js",
   "scripts": {
-    "test": "npm run build && echo \"no tests specified\" && exit 0",
+    "test": "scripts/test.sh",
     "build": "scripts/build.sh",
     "artwork": "scripts/artwork.sh",
     "docs": "scripts/docs.sh"
@@ -23,6 +23,7 @@
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-preset-es2015-riot": "^1.1.0",
+    "nodeunit": "^0.10.2",
     "pouchdb": "^5.4.5",
     "pubsub-js": "^1.5.3",
     "riot": "^2.6.1"
