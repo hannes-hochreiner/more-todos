@@ -17,3 +17,9 @@ Triggers the event "todo.created" with the id of the newly created todo as data.
 Expects "todo" to be an existing todo object.
 Returns nothing.
 Triggers the event "todo.deleted" with the id of the deleted todo as data.
+
+## void updateTodo(todo)
+
+Expects "todo" to be an existing todo object.
+Returns nothing.
+Triggers the event "todo.updated" with the id of the updated todo as data.
