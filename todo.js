@@ -16,8 +16,10 @@ this.upgradeRecursively = function (elem) {
   }
 };
 
-this.toggleTodo = function () {
+this.toggleTodo = function (e) {
+  console.log(e);
   this.todo.completed = !this.todo.completed;
+  console.log(this.todo);
   this.repo.updateTodo(this.todo);
 };
 });
