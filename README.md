@@ -6,4 +6,4 @@ Just another todo app.
 ## Documentation
 
   + [Processes](doc/processes.md)
-  + [Repository Interface](repository.md)
+  + [Repository Interface](doc/repository.md)
