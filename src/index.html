@@ -14,14 +14,15 @@
   </head>
   <body>
     <div id="content"></div>
-    <script src="pouchdb.min.js"></script>
+    <script src="system.js"></script>
+    <!-- <script src="pouchdb.min.js"></script>
     <script src="pubsub.js"></script>
     <script src="repositoryPouchdb.js"></script>
     <script src="riot.min.js"></script>
     <script src="todolist.js"></script>
     <script src="todo.js"></script>
     <script src="page-main.js"></script>
-    <script src="page-about.js"></script>
+    <script src="page-about.js"></script> -->
     <script>
       if("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/more-todos/serviceWorker.js").then(function() {
@@ -32,29 +33,48 @@
         });
       }
 
-      var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
+      Promise.all([
+        SystemJS.import("pouchdb.min.js"),
+        SystemJS.import("pubsub.js"),
+        SystemJS.import("repositoryPouchdb.js"),
+        SystemJS.import("riot.min.js"),
+        SystemJS.import("todolist.js"),
+        SystemJS.import("todo.js"),
+        SystemJS.import("page-main.js"),
+        SystemJS.import("page-about.js")
+      ]).then(function(res) {
+        console.log(res);
 
-      PubSub.subscribe("todo", function(msg, data) {
-        console.log(msg + ": " + data);
+        let PouchDB = res[0];
+        let PubSub = res[1];
+        let RepositoryPouchdb = res[2];
+        let riot = res[3];
+
+        var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
+
+        PubSub.subscribe("todo", function(msg, data) {
+          console.log(msg + ": " + data);
+        });
+
+        var currentPage = null;
+
+        function goTo(path) {
+          if (currentPage) {
+            currentPage.unmount(true);
+          }
+
+          if (path === "about" ) {
+            currentPage = riot.mount('div#content', 'mr-page-about')[0];
+          } else {
+            currentPage = riot.mount('div#content', 'mr-page-main', { repository: repo, pubsub: PubSub })[0];
+          }
+        }
+
+        riot.route(goTo);
+        riot.route.start(true);
+      }).catch(function(e) {
+        console.log(e);
       });
-
-      var currentPage = null;
-
-      function goTo(path) {
-        if (currentPage) {
-          currentPage.unmount(true);
-        }
-
-        if (path === "about" ) {
-          currentPage = riot.mount('div#content', 'mr-page-about')[0];
-        } else {
-          currentPage = riot.mount('div#content', 'mr-page-main', { repository: repo, pubsub: PubSub })[0];
-          console.log(currentPage);
-        }
-      }
-
-      riot.route(goTo);
-      riot.route.start(true);
     </script>
   </body>
 </html>

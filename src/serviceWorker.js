@@ -17,7 +17,8 @@ self.addEventListener('install', function(e) {
         "/more-todos/repositoryPouchdb.js",
         "/more-todos/riot.min.js",
         "/more-todos/todo.js",
-        "/more-todos/todolist.js"
+        "/more-todos/todolist.js",
+        "/more-todos/system.js"
       ]);
     })
   );
