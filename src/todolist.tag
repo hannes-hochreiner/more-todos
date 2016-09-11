@@ -23,12 +23,8 @@
     }
 
     this.updateTodoList = function() {
-      this.todos.splice(0, this.todos.length);
       repo.getAllTodos().then((res) => {
-        res.forEach((elem) => {
-          this.todos.push(elem);
-        });
-
+        this.todos = res;
         this.update();
       })
     }
