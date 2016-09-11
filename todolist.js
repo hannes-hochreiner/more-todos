@@ -17,12 +17,8 @@ this.createNewTodo = function () {
 this.updateTodoList = function () {
   var _this = this;
 
-  this.todos.splice(0, this.todos.length);
   repo.getAllTodos().then(function (res) {
-    res.forEach(function (elem) {
-      _this.todos.push(elem);
-    });
-
+    _this.todos = res;
     _this.update();
   });
 };
