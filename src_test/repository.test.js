@@ -29,6 +29,22 @@ class PouchFake {
       resolve({ "id": "testId1" });
     });
   }
+
+  put(todo) {
+    this._functionCalls.push("put: " + JSON.stringify(todo));
+
+    return new Promise((resolve, reject) => {
+      resolve(todo);
+    });
+  }
+
+  remove(todo) {
+    this._functionCalls.push("remove: " + JSON.stringify(todo));
+
+    return new Promise((resolve, reject) => {
+      resolve(todo);
+    });
+  }
 }
 
 class PubSubFake {
@@ -80,6 +96,34 @@ export function createTodo(test) {
   repo.createTodo({ "text": "test" }).then(() => {
     test.deepEqual(pouchFake.functionCalls, ["post: {\"text\":\"test\"}"]);
     test.deepEqual(pubSubFake.functionCalls, ["publish: todo.created \"testId1\""]);
+    test.done();
+  });
+}
+
+export function updateTodo(test) {
+  test.expect(2);
+
+  let pouchFake = new PouchFake();
+  let pubSubFake = new PubSubFake();
+  let repo = new Repository(pouchFake, pubSubFake);
+
+  repo.updateTodo({ "id": "testId2", "text": "testText" }).then(() => {
+    test.deepEqual(pouchFake.functionCalls, ["put: {\"id\":\"testId2\",\"text\":\"testText\"}"]);
+    test.deepEqual(pubSubFake.functionCalls, ["publish: todo.updated \"testId2\""]);
+    test.done();
+  });
+}
+
+export function deleteTodo(test) {
+  test.expect(2);
+
+  let pouchFake = new PouchFake();
+  let pubSubFake = new PubSubFake();
+  let repo = new Repository(pouchFake, pubSubFake);
+
+  repo.deleteTodo({ "id": "testId3", "text": "testText" }).then(() => {
+    test.deepEqual(pouchFake.functionCalls, ["remove: {\"id\":\"testId3\",\"text\":\"testText\"}"]);
+    test.deepEqual(pubSubFake.functionCalls, ["publish: todo.deleted \"testId3\""]);
     test.done();
   });
 }
