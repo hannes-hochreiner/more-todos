@@ -14,15 +14,14 @@
   </head>
   <body>
     <div id="content"></div>
-    <script src="system.js"></script>
-    <!-- <script src="pouchdb.min.js"></script>
+    <script src="pouchdb.min.js"></script>
     <script src="pubsub.js"></script>
-    <script src="repositoryPouchdb.js"></script>
     <script src="riot.min.js"></script>
     <script src="todolist.js"></script>
     <script src="todo.js"></script>
     <script src="page-main.js"></script>
-    <script src="page-about.js"></script> -->
+    <script src="page-about.js"></script>
+    <script src="system.js"></script>
     <script>
       if("serviceWorker" in navigator) {
         navigator.serviceWorker.register("/more-todos/serviceWorker.js").then(function() {
@@ -33,23 +32,7 @@
         });
       }
 
-      Promise.all([
-        SystemJS.import("pouchdb.min.js"),
-        SystemJS.import("pubsub.js"),
-        SystemJS.import("repositoryPouchdb.js"),
-        SystemJS.import("riot.min.js"),
-        SystemJS.import("todolist.js"),
-        SystemJS.import("todo.js"),
-        SystemJS.import("page-main.js"),
-        SystemJS.import("page-about.js")
-      ]).then(function(res) {
-        console.log(res);
-
-        let PouchDB = res[0];
-        let PubSub = res[1];
-        let RepositoryPouchdb = res[2];
-        let riot = res[3];
-
+      SystemJS.import("repositoryPouchdb.js").then(function(RepositoryPouchdb) {
         var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
 
         PubSub.subscribe("todo", function(msg, data) {
