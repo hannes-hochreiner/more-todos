@@ -13,7 +13,7 @@ riot.tag2('mr-todolist', '<form onsubmit="{createNewTodo}"> <div class="mdl-text
     }
 
     this.updateTodoList = function() {
-      repo.getAllTodos().then((res) => {
+      this.repo.getAllTodos().then((res) => {
         this.todos = res;
         this.update();
       })
