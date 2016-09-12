@@ -23,7 +23,7 @@
     }
 
     this.updateTodoList = function() {
-      repo.getAllTodos().then((res) => {
+      this.repo.getAllTodos().then((res) => {
         this.todos = res;
         this.update();
       })
