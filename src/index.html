@@ -32,8 +32,8 @@
         });
       }
 
-      SystemJS.import("repositoryPouchdb.js").then(function(RepositoryPouchdb) {
-        var repo = new RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
+      SystemJS.import("repositoryPouchdb.js").then(function(RepoPouchDb) {
+        var repo = new RepoPouchDb.RepositoryPouchdb(new PouchDB('more-todos-data'), PubSub);
 
         PubSub.subscribe("todo", function(msg, data) {
           console.log(msg + ": " + data);
