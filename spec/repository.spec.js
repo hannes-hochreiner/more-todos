@@ -1,6 +1,8 @@
 import {RepositoryPouchdb as Repository} from "../src/repositoryPouchdb";
 
+/** @test {RepositoryPouchdb} */
 describe("The repository", () => {
+  /** @test {RepositoryPouchdb.constructor} */
   it("should instantiate", (done) => {
     let repo = new Repository();
 
@@ -8,6 +10,7 @@ describe("The repository", () => {
     done();
   });
 
+  /** @test {RepositoryPouchdb.getAllTodos} */
   it("should provide a list of all documents", (done) => {
     let pouchDb = jasmine.createSpyObj("PouchDb", ["allDocs"]);
 
@@ -32,6 +35,7 @@ describe("The repository", () => {
     });
   });
 
+  /** @test {RepositoryPouchdb.createTodo} */
   it("should provide a function to presist a new document", (done) => {
     let pouchDb = jasmine.createSpyObj("PouchDb", ["post"]);
 
@@ -49,6 +53,7 @@ describe("The repository", () => {
     });
   });
 
+  /** @test {RepositoryPouchdb.updateTodo} */
   it("should provide a function to update an existing document", (done) => {
     let pouchDb = jasmine.createSpyObj("PouchDb", ["put"]);
 
@@ -68,6 +73,7 @@ describe("The repository", () => {
     });
   });
 
+  /** @test {RepositoryPouchdb.deleteTodo} */
   it("should provide a function to delete an existing document", (done) => {
     let pouchDb = jasmine.createSpyObj("PouchDb", ["remove"]);
 

@@ -1,0 +1,8 @@
+{
+  "source": "./src",
+  "destination": "./bld/doc",
+  "test": {
+    "type": "mocha",
+    "source": "./spec"
+  }
+}
