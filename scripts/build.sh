@@ -9,9 +9,11 @@ riot src bld
 
 # transform es2015 modules
 babel --plugins transform-es2015-modules-systemjs src/repositoryPouchdb.js --out-file bld/repositoryPouchdb.js
+babel --plugins transform-es2015-modules-systemjs src/repositoryStaging.js --out-file bld/repositoryStaging.js
 
 # copy static resources
 cp src/index.html bld
+cp src/staging.html bld
 cp src/manifest.json bld
 cp src/icon-2x.png bld
 cp src/icon-3x.png bld
