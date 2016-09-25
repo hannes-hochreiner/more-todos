@@ -1,29 +1,38 @@
 export class CustomReporter {
+  /** prepend control sequence introducer to ANSI escape code
+   * https://en.wikipedia.org/wiki/ANSI_escape_code
+   */
+  _aec(code) {
+    return String.fromCharCode(27) + "[" + code;
+  }
+
+  _rewriteLine(line) {
+    return this._aec("A") + this._aec("K") + line;
+  }
+
   jasmineStarted(suiteInfo) {
-    console.log('Running suite with ' + suiteInfo.totalSpecsDefined);
+    console.log("Running " + suiteInfo.totalSpecsDefined + " tests");
   }
 
   suiteStarted(result) {
-    console.log('Suite started: ' + result.description + ' whose full description is: ' + result.fullName);
+    console.log(result.description + "...");
   }
 
   specStarted(result) {
-    console.log('Spec started: ' + result.description + ' whose full description is: ' + result.fullName);
+    console.log("   ..." + result.description);
   }
 
   specDone(result) {
-    console.log('Spec: ' + result.description + ' was ' + result.status);
+    console.log(this._rewriteLine(`   ...${result.description}...${result.status} (${result.passedExpectations.length} expectation${result.passedExpectations.length == 1 ? "" : "s"})`));
 
     result.failedExpectations.forEach((failedExpec) => {
       console.log('Failure: ' + failedExpec.message);
       console.log(failedExpec.stack);
     });
-
-    console.log(result.passedExpectations.length);
   }
 
   suiteDone(result) {
-    console.log('Suite: ' + result.description + ' was ' + result.status);
+    // console.log('Suite: ' + result.description + ' was ' + result.status);
 
     result.failedExpectations.forEach((failedExpec) => {
       console.log('AfterAll ' + failedExpec.message);
